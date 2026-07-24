@@ -77,23 +77,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Data Career Studio — Learn, Practice, Build & Get Hired in Data & AI" },
+      { title: "Data Career Studio | Data & AI Learning Platform" },
       {
         name: "description",
         content:
-          "An AI-powered ecosystem for modern data & AI careers: courses, hands-on practice, portfolio projects, certifications, mock interviews, and a global community.",
+          "Learn Data Engineering, Data Science, AI, SQL, Python, Power BI, Snowflake, and Databricks with hands-on courses, projects, and expert guidance.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Data Career Studio" },
+      { property: "og:title", content: "Data Career Studio | Data & AI Learning Platform" },
       {
         property: "og:description",
-        content: "Learn, practice, build, and get hired in Data Engineering, Data Science & AI.",
+        content: "Learn Data Engineering, Data Science, AI, SQL, Python, Power BI, Snowflake, and Databricks with hands-on courses, projects, and expert guidance.",
       },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Data Career Studio | Data & AI Learning Platform" },
+      { name: "twitter:description", content: "Learn Data Engineering, Data Science, AI, SQL, Python, Power BI, Snowflake, and Databricks with hands-on courses, projects, and expert guidance." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/2OQNPE3hBbOVqw1zpmjgNkOezOP2/social-images/social-1784887807366-logo2.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/2OQNPE3hBbOVqw1zpmjgNkOezOP2/social-images/social-1784887807366-logo2.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
