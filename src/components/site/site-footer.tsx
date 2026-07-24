@@ -15,8 +15,7 @@ export function SiteFooter() {
               Data Career <span className="text-gradient">Studio</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              The AI-powered ecosystem to learn, practice, build, and get hired in modern data & AI careers.
-            </p>
+Your Learning Hub for Data Engineering, Data Science, Analytics, AI & Cloud.            </p>
           </div>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title}>
@@ -36,7 +35,7 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} Data Career Studio. Built for the next generation of data professionals.</div>
+          <div>© {new Date().getFullYear()} Data Career Studio. Built for Data Professionals.</div>
           <div className="flex gap-4">
             <Link to="/company">Privacy</Link>
             <Link to="/company">Terms</Link>

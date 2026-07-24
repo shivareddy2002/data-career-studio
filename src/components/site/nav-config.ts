@@ -4,11 +4,11 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "Learn", to: "/learn", description: "Paths, courses, tutorials, roadmaps" },
   { label: "Practice", to: "/practice", description: "SQL, Python, labs, challenges" },
   { label: "Build", to: "/build", description: "Portfolio-ready projects & case studies" },
-  { label: "Certifications", to: "/certifications", description: "SnowPro, Databricks, DP-203 & more" },
-  { label: "Career Hub", to: "/career", description: "Jobs, resume, mock interviews" },
-  { label: "AI Studio", to: "/ai-studio", description: "Tutor, reviewer, planner, coach" },
-  { label: "Community", to: "/community", description: "Forums, mentors, hackathons" },
-  { label: "Resources", to: "/resources", description: "Notes, cheat sheets, datasets" },
+  // { label: "Certifications", to: "/certifications", description: "SnowPro, Databricks, DP-203 & more" },
+  // { label: "Career Hub", to: "/career", description: "Jobs, resume, mock interviews" },
+  // { label: "AI Studio", to: "/ai-studio", description: "Tutor, reviewer, planner, coach" },
+  // { label: "Community", to: "/community", description: "Forums, mentors, hackathons" },
+  // { label: "Resources", to: "/resources", description: "Notes, cheat sheets, datasets" },
 ];
 
 export const FOOTER_SECTIONS: { title: string; links: NavItem[] }[] = [
