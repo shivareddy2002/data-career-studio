@@ -49,3 +49,36 @@ export const FOOTER_SECTIONS: { title: string; links: NavItem[] }[] = [
     ],
   },
 ];
+
+export type NavSection = { title: string; links: NavItem[] };
+
+/** Groups surfaced in the ⌘K command palette. */
+export const COMMAND_GROUPS: NavSection[] = [
+  {
+    title: "Pillars",
+    links: [
+      { label: "Learn", to: "/learn", description: "Paths & courses" },
+      { label: "Practice", to: "/practice", description: "Labs & challenges" },
+      { label: "Build", to: "/build", description: "Projects" },
+      { label: "Certifications", to: "/certifications", description: "Exam prep" },
+      { label: "Career Hub", to: "/career", description: "Jobs & interviews" },
+    ],
+  },
+  {
+    title: "Workspace",
+    links: [
+      { label: "Dashboard", to: "/dashboard" },
+      { label: "AI Studio", to: "/ai-studio" },
+      { label: "Resources", to: "/resources" },
+      { label: "Community", to: "/community" },
+      { label: "Blog", to: "/blog" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", to: "/company" },
+      { label: "Support", to: "/support" },
+    ],
+  },
+];
