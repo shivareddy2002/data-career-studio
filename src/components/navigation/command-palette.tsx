@@ -31,7 +31,12 @@ export function CommandPalette() {
   );
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen}>
+    <CommandDialog
+      open={open}
+      onOpenChange={setOpen}
+      title="Command palette"
+      description="Search and navigate Data Career Studio"
+    >
       <CommandInput placeholder="Search courses, labs, projects, pages…" />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
