@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell, PillarHero } from "@/components/site/page-shell";
+import { LayoutDashboard } from "lucide-react";
+import { AppLayout } from "@/components/layout/app-layout";
+import { EmptyState } from "@/components/shared/states";
+import { DASHBOARD_NAV } from "@/components/site/nav-config";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -15,16 +18,17 @@ export const Route = createFileRoute("/dashboard")({
 
 function DashPage() {
   return (
-    <PageShell>
-      <PillarHero
-        eyebrow="Dashboard"
-        title="Your personal learning cockpit."
-        description="Continue learning, track streaks, review projects, browse certificates and get AI-powered recommendations."
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "Dashboard" }]}
+    <AppLayout
+      nav={DASHBOARD_NAV}
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Dashboard" }]}
+      title="Your personal learning cockpit"
+      description="Continue learning, track streaks, review projects, browse certificates and get AI-powered recommendations."
+    >
+      <EmptyState
+        icon={<LayoutDashboard className="h-8 w-8" />}
+        title="Nothing to show yet"
+        description="Your progress, streaks and recommendations appear here once accounts and learning data come online."
       />
-      <section className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">
-        Full dashboard comes online with Part 5 (Authentication) & Part 6 (User Dashboard).
-      </section>
-    </PageShell>
+    </AppLayout>
   );
 }

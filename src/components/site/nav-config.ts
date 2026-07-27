@@ -49,3 +49,66 @@ export const FOOTER_SECTIONS: { title: string; links: NavItem[] }[] = [
     ],
   },
 ];
+
+export type NavSection = { title: string; links: NavItem[] };
+
+/** Sidebar navigation for the workspace/dashboard area. */
+export const DASHBOARD_NAV: { title: string; items: NavItem[] }[] = [
+  {
+    title: "Overview",
+    items: [
+      { label: "Dashboard", to: "/dashboard" },
+      { label: "Learn", to: "/learn" },
+      { label: "Practice", to: "/practice" },
+      { label: "Build", to: "/build" },
+    ],
+  },
+  {
+    title: "Growth",
+    items: [
+      { label: "Certifications", to: "/certifications" },
+      { label: "Career Hub", to: "/career" },
+      { label: "AI Studio", to: "/ai-studio" },
+      { label: "Community", to: "/community" },
+    ],
+  },
+  {
+    title: "Library",
+    items: [
+      { label: "Resources", to: "/resources" },
+      { label: "Blog", to: "/blog" },
+      { label: "Support", to: "/support" },
+    ],
+  },
+];
+
+/** Groups surfaced in the ⌘K command palette. */
+export const COMMAND_GROUPS: NavSection[] = [
+  {
+    title: "Pillars",
+    links: [
+      { label: "Learn", to: "/learn", description: "Paths & courses" },
+      { label: "Practice", to: "/practice", description: "Labs & challenges" },
+      { label: "Build", to: "/build", description: "Projects" },
+      { label: "Certifications", to: "/certifications", description: "Exam prep" },
+      { label: "Career Hub", to: "/career", description: "Jobs & interviews" },
+    ],
+  },
+  {
+    title: "Workspace",
+    links: [
+      { label: "Dashboard", to: "/dashboard" },
+      { label: "AI Studio", to: "/ai-studio" },
+      { label: "Resources", to: "/resources" },
+      { label: "Community", to: "/community" },
+      { label: "Blog", to: "/blog" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", to: "/company" },
+      { label: "Support", to: "/support" },
+    ],
+  },
+];
