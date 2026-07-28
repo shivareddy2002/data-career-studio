@@ -5,7 +5,7 @@ import { Section } from "@/components/shared/section";
 import { getPath } from "@/data/learning-paths";
 import { coursesForPath } from "@/data/courses";
 
-export const Route = createFileRoute("/learn/paths/$pathSlug")({
+export const Route = createFileRoute("/learn_/paths/$pathSlug")({
   loader: ({ params }) => {
     const path = getPath(params.pathSlug);
     if (!path) throw notFound();
@@ -36,7 +36,8 @@ export const Route = createFileRoute("/learn/paths/$pathSlug")({
 });
 
 function PathPage() {
-  const { path } = Route.useLoaderData();
+  const { pathSlug } = Route.useParams();
+  const path = getPath(pathSlug)!;
   const courses = coursesForPath(path.slug);
 
   return (

@@ -4,7 +4,7 @@ import { PillarHero } from "@/components/site/page-shell";
 import { Section } from "@/components/shared/section";
 import { getCourse } from "@/data/courses";
 
-export const Route = createFileRoute("/learn/courses/$courseSlug")({
+export const Route = createFileRoute("/learn_/courses/$courseSlug")({
   loader: ({ params }) => {
     const course = getCourse(params.courseSlug);
     if (!course) throw notFound();
@@ -35,7 +35,8 @@ export const Route = createFileRoute("/learn/courses/$courseSlug")({
 });
 
 function CoursePage() {
-  const { course } = Route.useLoaderData();
+  const { courseSlug } = Route.useParams();
+  const course = getCourse(courseSlug)!;
 
   return (
     <MarketingLayout>
