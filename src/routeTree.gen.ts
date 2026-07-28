@@ -24,6 +24,7 @@ import { Route as AiStudioRouteImport } from './routes/ai-studio'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearnPathsPathSlugRouteImport } from './routes/learn_.paths.$pathSlug'
 import { Route as LearnCoursesCourseSlugRouteImport } from './routes/learn_.courses.$courseSlug'
+import { Route as LearnCoursesCourseSlugLessonSlugRouteImport } from './routes/learn_.courses.$courseSlug.$lessonSlug'
 
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
@@ -100,6 +101,12 @@ const LearnCoursesCourseSlugRoute = LearnCoursesCourseSlugRouteImport.update({
   path: '/learn/courses/$courseSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnCoursesCourseSlugLessonSlugRoute =
+  LearnCoursesCourseSlugLessonSlugRouteImport.update({
+    id: '/$lessonSlug',
+    path: '/$lessonSlug',
+    getParentRoute: () => LearnCoursesCourseSlugRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -115,8 +122,9 @@ export interface FileRoutesByFullPath {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
-  '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRoute
+  '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
+  '/learn/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -132,8 +140,9 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
-  '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRoute
+  '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
+  '/learn/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -150,8 +159,9 @@ export interface FileRoutesById {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
-  '/learn_/courses/$courseSlug': typeof LearnCoursesCourseSlugRoute
+  '/learn_/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn_/paths/$pathSlug': typeof LearnPathsPathSlugRoute
+  '/learn_/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
+    | '/learn/courses/$courseSlug/$lessonSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +199,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
+    | '/learn/courses/$courseSlug/$lessonSlug'
   id:
     | '__root__'
     | '/'
@@ -205,6 +217,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/learn_/courses/$courseSlug'
     | '/learn_/paths/$pathSlug'
+    | '/learn_/courses/$courseSlug/$lessonSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -221,7 +234,7 @@ export interface RootRouteChildren {
   PracticeRoute: typeof PracticeRoute
   ResourcesRoute: typeof ResourcesRoute
   SupportRoute: typeof SupportRoute
-  LearnCoursesCourseSlugRoute: typeof LearnCoursesCourseSlugRoute
+  LearnCoursesCourseSlugRoute: typeof LearnCoursesCourseSlugRouteWithChildren
   LearnPathsPathSlugRoute: typeof LearnPathsPathSlugRoute
 }
 
@@ -332,8 +345,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnCoursesCourseSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn_/courses/$courseSlug/$lessonSlug': {
+      id: '/learn_/courses/$courseSlug/$lessonSlug'
+      path: '/$lessonSlug'
+      fullPath: '/learn/courses/$courseSlug/$lessonSlug'
+      preLoaderRoute: typeof LearnCoursesCourseSlugLessonSlugRouteImport
+      parentRoute: typeof LearnCoursesCourseSlugRoute
+    }
   }
 }
+
+interface LearnCoursesCourseSlugRouteChildren {
+  LearnCoursesCourseSlugLessonSlugRoute: typeof LearnCoursesCourseSlugLessonSlugRoute
+}
+
+const LearnCoursesCourseSlugRouteChildren: LearnCoursesCourseSlugRouteChildren =
+  {
+    LearnCoursesCourseSlugLessonSlugRoute:
+      LearnCoursesCourseSlugLessonSlugRoute,
+  }
+
+const LearnCoursesCourseSlugRouteWithChildren =
+  LearnCoursesCourseSlugRoute._addFileChildren(
+    LearnCoursesCourseSlugRouteChildren,
+  )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -349,7 +384,7 @@ const rootRouteChildren: RootRouteChildren = {
   PracticeRoute: PracticeRoute,
   ResourcesRoute: ResourcesRoute,
   SupportRoute: SupportRoute,
-  LearnCoursesCourseSlugRoute: LearnCoursesCourseSlugRoute,
+  LearnCoursesCourseSlugRoute: LearnCoursesCourseSlugRouteWithChildren,
   LearnPathsPathSlugRoute: LearnPathsPathSlugRoute,
 }
 export const routeTree = rootRouteImport

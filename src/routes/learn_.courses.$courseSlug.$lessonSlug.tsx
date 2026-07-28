@@ -12,7 +12,7 @@ import { AiTutorPanel } from "@/components/learning/ai-tutor-panel";
 import { findLesson } from "@/data/courses";
 import { lessonKey, useProgressStore } from "@/stores/progress-store";
 
-export const Route = createFileRoute("/learn/courses/$courseSlug/$lessonSlug")({
+export const Route = createFileRoute("/learn_/courses/$courseSlug/$lessonSlug")({
   loader: ({ params }) => {
     const found = findLesson(params.courseSlug, params.lessonSlug);
     if (!found) throw notFound();
