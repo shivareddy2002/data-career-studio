@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PillarHero } from "@/components/site/page-shell";
 import { ArrowRight } from "lucide-react";
+import { LEARNING_PATHS } from "@/data/learning-paths";
+import { COURSES } from "@/data/courses";
 
 export const Route = createFileRoute("/learn")({
   head: () => ({
@@ -13,11 +15,6 @@ export const Route = createFileRoute("/learn")({
   }),
   component: LearnPage,
 });
-
-const PATHS = [
-  "Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer",
-  "ML Engineer", "Analytics Engineer", "Cloud Engineer", "Generative AI Engineer", "LLM Engineer",
-];
 
 const SUBSECTIONS = [
   "Courses", "Tutorials", "Documentation", "Learning Roadmaps",
@@ -36,17 +33,40 @@ function LearnPage() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <h2 className="text-2xl font-semibold tracking-tight">Learning paths</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {PATHS.map((p) => (
-            <div key={p} className="group rounded-2xl border border-border bg-gradient-card p-6 transition-all hover:border-primary/50 hover:shadow-elegant">
-              <div className="text-xs uppercase tracking-wider text-primary">Role path</div>
-              <h3 className="mt-2 text-lg font-semibold">{p}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Curriculum, projects, certifications and interview prep tailored for {p.toLowerCase()}s.
-              </p>
+          {LEARNING_PATHS.map((p) => (
+            <Link
+              key={p.slug}
+              to="/learn/paths/$pathSlug"
+              params={{ pathSlug: p.slug }}
+              className="group rounded-2xl border border-border bg-gradient-card p-6 transition-all hover:border-primary/50 hover:shadow-elegant"
+            >
+              <div className="text-xs uppercase tracking-wider text-primary">
+                {p.difficulty} · {p.duration}
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">{p.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
               <div className="mt-4 inline-flex items-center gap-1 text-sm text-primary">
                 View path <ArrowRight className="h-3.5 w-3.5" />
               </div>
-            </div>
+            </Link>
+          ))}
+        </div>
+
+        <h2 className="mt-20 text-2xl font-semibold tracking-tight">Courses</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {COURSES.map((c) => (
+            <Link
+              key={c.slug}
+              to="/learn/courses/$courseSlug"
+              params={{ courseSlug: c.slug }}
+              className="rounded-2xl border border-border bg-card/40 p-6 transition-all hover:border-primary/50 hover:shadow-elegant"
+            >
+              <div className="text-xs uppercase tracking-wider text-primary">
+                {c.level} · {c.hours} hours · {c.modules.length} modules
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">{c.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{c.subtitle}</p>
+            </Link>
           ))}
         </div>
 
@@ -57,11 +77,6 @@ function LearnPage() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-2xl border border-border bg-gradient-card p-8">
-          <p className="text-sm text-muted-foreground">Coming next in Part 7 (Learning Platform)</p>
-          <h3 className="mt-2 text-xl font-semibold">Full course player, module viewer, quizzes, playground, AI tutor.</h3>
-          <Link to="/" className="mt-4 inline-flex text-sm text-primary">← Back to home</Link>
-        </div>
       </section>
     </PageShell>
   );
