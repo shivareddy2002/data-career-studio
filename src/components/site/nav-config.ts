@@ -78,6 +78,7 @@ export const DASHBOARD_NAV: { title: string; items: NavItem[] }[] = [
       { label: "Resources", to: "/resources" },
       { label: "Blog", to: "/blog" },
       { label: "Support", to: "/support" },
+      { label: "Admin", to: "/admin" },
     ],
   },
 ];
@@ -101,6 +102,7 @@ export const COMMAND_GROUPS: NavSection[] = [
       { label: "AI Studio", to: "/ai-studio" },
       { label: "Resources", to: "/resources" },
       { label: "Community", to: "/community" },
+      { label: "Admin", to: "/admin" },
       { label: "Blog", to: "/blog" },
     ],
   },
