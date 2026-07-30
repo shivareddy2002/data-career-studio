@@ -206,7 +206,12 @@ export const COMMUNITY_NAV = [
     title: "Community",
     items: [
       { label: "Community Home", to: "/community" },
-      ...COMMUNITY_SECTIONS.map((s) => ({ label: s.title, to: `/community/${s.slug}` })),
+      { label: "Discussion Forums", to: "/community/forums" },
+      { label: "Study Groups", to: "/community/study-groups" },
+      { label: "Mentor Hub", to: "/community/mentors" },
+      { label: "Creator Hub", to: "/community/creators" },
+      { label: "Events & Hackathons", to: "/community/events" },
+      { label: "Knowledge Base", to: "/community/knowledge-base" },
     ],
   },
 ];
