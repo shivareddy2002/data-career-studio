@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { AppLayout } from "@/components/layout/app-layout";
-import { ADMIN_NAV, ADMIN_SECTIONS } from "@/data/admin";
+import { ADMIN_NAV, ADMIN_SECTIONS, type AdminSection } from "@/data/admin";
 
 export const Route = createFileRoute("/admin_/$sectionSlug")({
   loader: ({ params }) => {
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/admin_/$sectionSlug")({
 });
 
 function AdminSectionPage() {
-  const section = Route.useLoaderData();
+  const section = Route.useLoaderData() as AdminSection;
 
   return (
     <AppLayout

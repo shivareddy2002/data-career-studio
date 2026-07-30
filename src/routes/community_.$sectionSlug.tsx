@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { AppLayout } from "@/components/layout/app-layout";
-import { COMMUNITY_NAV, COMMUNITY_SECTIONS } from "@/data/community";
+import { COMMUNITY_NAV, COMMUNITY_SECTIONS, type CommunitySection } from "@/data/community";
 
 export const Route = createFileRoute("/community_/$sectionSlug")({
   loader: ({ params }) => {
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/community_/$sectionSlug")({
 });
 
 function CommunitySectionPage() {
-  const section = Route.useLoaderData();
+  const section = Route.useLoaderData() as CommunitySection;
 
   return (
     <AppLayout

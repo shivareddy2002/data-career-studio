@@ -21,7 +21,10 @@ import { Route as CareerRouteImport } from './routes/career'
 import { Route as BuildRouteImport } from './routes/build'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiStudioRouteImport } from './routes/ai-studio'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommunitySectionSlugRouteImport } from './routes/community_.$sectionSlug'
+import { Route as AdminSectionSlugRouteImport } from './routes/admin_.$sectionSlug'
 import { Route as LearnPathsPathSlugRouteImport } from './routes/learn_.paths.$pathSlug'
 import { Route as LearnCoursesCourseSlugRouteImport } from './routes/learn_.courses.$courseSlug'
 import { Route as LearnCoursesCourseSlugLessonSlugRouteImport } from './routes/learn_.courses.$courseSlug.$lessonSlug'
@@ -86,9 +89,24 @@ const AiStudioRoute = AiStudioRouteImport.update({
   path: '/ai-studio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunitySectionSlugRoute = CommunitySectionSlugRouteImport.update({
+  id: '/community_/$sectionSlug',
+  path: '/community/$sectionSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSectionSlugRoute = AdminSectionSlugRouteImport.update({
+  id: '/admin_/$sectionSlug',
+  path: '/admin/$sectionSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnPathsPathSlugRoute = LearnPathsPathSlugRouteImport.update({
@@ -110,6 +128,7 @@ const LearnCoursesCourseSlugLessonSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-studio': typeof AiStudioRoute
   '/blog': typeof BlogRoute
   '/build': typeof BuildRoute
@@ -122,12 +141,15 @@ export interface FileRoutesByFullPath {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
+  '/admin/$sectionSlug': typeof AdminSectionSlugRoute
+  '/community/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
   '/learn/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-studio': typeof AiStudioRoute
   '/blog': typeof BlogRoute
   '/build': typeof BuildRoute
@@ -140,6 +162,8 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
+  '/admin/$sectionSlug': typeof AdminSectionSlugRoute
+  '/community/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
   '/learn/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
@@ -147,6 +171,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-studio': typeof AiStudioRoute
   '/blog': typeof BlogRoute
   '/build': typeof BuildRoute
@@ -159,6 +184,8 @@ export interface FileRoutesById {
   '/practice': typeof PracticeRoute
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
+  '/admin_/$sectionSlug': typeof AdminSectionSlugRoute
+  '/community_/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn_/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn_/paths/$pathSlug': typeof LearnPathsPathSlugRoute
   '/learn_/courses/$courseSlug/$lessonSlug': typeof LearnCoursesCourseSlugLessonSlugRoute
@@ -167,6 +194,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/ai-studio'
     | '/blog'
     | '/build'
@@ -179,12 +207,15 @@ export interface FileRouteTypes {
     | '/practice'
     | '/resources'
     | '/support'
+    | '/admin/$sectionSlug'
+    | '/community/$sectionSlug'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
     | '/learn/courses/$courseSlug/$lessonSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/ai-studio'
     | '/blog'
     | '/build'
@@ -197,12 +228,15 @@ export interface FileRouteTypes {
     | '/practice'
     | '/resources'
     | '/support'
+    | '/admin/$sectionSlug'
+    | '/community/$sectionSlug'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
     | '/learn/courses/$courseSlug/$lessonSlug'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/ai-studio'
     | '/blog'
     | '/build'
@@ -215,6 +249,8 @@ export interface FileRouteTypes {
     | '/practice'
     | '/resources'
     | '/support'
+    | '/admin_/$sectionSlug'
+    | '/community_/$sectionSlug'
     | '/learn_/courses/$courseSlug'
     | '/learn_/paths/$pathSlug'
     | '/learn_/courses/$courseSlug/$lessonSlug'
@@ -222,6 +258,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AiStudioRoute: typeof AiStudioRoute
   BlogRoute: typeof BlogRoute
   BuildRoute: typeof BuildRoute
@@ -234,6 +271,8 @@ export interface RootRouteChildren {
   PracticeRoute: typeof PracticeRoute
   ResourcesRoute: typeof ResourcesRoute
   SupportRoute: typeof SupportRoute
+  AdminSectionSlugRoute: typeof AdminSectionSlugRoute
+  CommunitySectionSlugRoute: typeof CommunitySectionSlugRoute
   LearnCoursesCourseSlugRoute: typeof LearnCoursesCourseSlugRouteWithChildren
   LearnPathsPathSlugRoute: typeof LearnPathsPathSlugRoute
 }
@@ -324,11 +363,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiStudioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community_/$sectionSlug': {
+      id: '/community_/$sectionSlug'
+      path: '/community/$sectionSlug'
+      fullPath: '/community/$sectionSlug'
+      preLoaderRoute: typeof CommunitySectionSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/$sectionSlug': {
+      id: '/admin_/$sectionSlug'
+      path: '/admin/$sectionSlug'
+      fullPath: '/admin/$sectionSlug'
+      preLoaderRoute: typeof AdminSectionSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn_/paths/$pathSlug': {
@@ -372,6 +432,7 @@ const LearnCoursesCourseSlugRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AiStudioRoute: AiStudioRoute,
   BlogRoute: BlogRoute,
   BuildRoute: BuildRoute,
@@ -384,6 +445,8 @@ const rootRouteChildren: RootRouteChildren = {
   PracticeRoute: PracticeRoute,
   ResourcesRoute: ResourcesRoute,
   SupportRoute: SupportRoute,
+  AdminSectionSlugRoute: AdminSectionSlugRoute,
+  CommunitySectionSlugRoute: CommunitySectionSlugRoute,
   LearnCoursesCourseSlugRoute: LearnCoursesCourseSlugRouteWithChildren,
   LearnPathsPathSlugRoute: LearnPathsPathSlugRoute,
 }
