@@ -116,7 +116,7 @@ export function AiChat({
                 {isUser ? (
                   <p className="whitespace-pre-wrap">{text}</p>
                 ) : (
-                  <div className="prose prose-sm prose-invert max-w-none prose-pre:bg-secondary prose-pre:text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-a:text-primary">
+                  <div className="space-y-3 [&_a]:text-primary [&_a]:underline [&_code]:rounded [&_code]:bg-secondary [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-[0.8em] [&_h1]:text-base [&_h1]:font-semibold [&_h2]:text-sm [&_h2]:font-semibold [&_h3]:text-sm [&_h3]:font-semibold [&_li]:ml-4 [&_li]:list-disc [&_ol_li]:list-decimal [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-border/60 [&_pre]:bg-secondary [&_pre]:p-3 [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_table]:w-full [&_table]:text-left [&_td]:border-t [&_td]:border-border/60 [&_td]:py-1.5 [&_td]:pr-4 [&_th]:pb-1.5 [&_th]:pr-4 [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wide [&_th]:text-muted-foreground [&_ul]:space-y-1">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
                   </div>
                 )}
