@@ -3,6 +3,8 @@ import { Sparkles, RotateCw } from "lucide-react";
 import type { Lesson } from "@/data/learning-types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AiChat } from "@/components/ai/ai-chat";
+import { getAiAgent } from "@/data/ai-agents";
 
 type TutorAction = {
   id: string;
@@ -67,8 +69,20 @@ const ACTIONS: TutorAction[] = [
 
 export function AiTutorPanel({ lesson }: { lesson: Lesson }) {
   const [activeId, setActiveId] = useState<string>("explain");
+  const [chatOpen, setChatOpen] = useState(false);
   const active = ACTIONS.find((a) => a.id === activeId) ?? ACTIONS[0];
   const result = active.render(lesson);
+  const tutor = getAiAgent("tutor")!;
+  const lessonContext = [
+    `Lesson: ${lesson.title}`,
+    lesson.intro,
+    `Key points: ${lesson.keyPoints.join("; ")}`,
+    lesson.examples?.length
+      ? `Examples: ${lesson.examples.map((e) => `${e.title} — ${e.explanation}`).join(" | ")}`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return (
     <div className="rounded-2xl border border-border bg-gradient-card p-6">
@@ -120,6 +134,16 @@ export function AiTutorPanel({ lesson }: { lesson: Lesson }) {
       <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
         <RotateCw className="h-3 w-3" />
         Answers are grounded in this lesson's material.
+      </div>
+
+      <div className="mt-5">
+        {chatOpen ? (
+          <AiChat agent={tutor} context={lessonContext} heightClass="h-[520px]" />
+        ) : (
+          <Button variant="outline" className="w-full" onClick={() => setChatOpen(true)}>
+            <Sparkles className="mr-2 h-4 w-4" /> Ask the AI tutor about this lesson
+          </Button>
+        )}
       </div>
     </div>
   );
