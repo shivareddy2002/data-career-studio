@@ -24,6 +24,7 @@ import { Route as AiStudioRouteImport } from './routes/ai-studio'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunitySectionSlugRouteImport } from './routes/community_.$sectionSlug'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AdminSectionSlugRouteImport } from './routes/admin_.$sectionSlug'
 import { Route as LearnPathsPathSlugRouteImport } from './routes/learn_.paths.$pathSlug'
 import { Route as LearnCoursesCourseSlugRouteImport } from './routes/learn_.courses.$courseSlug'
@@ -104,6 +105,11 @@ const CommunitySectionSlugRoute = CommunitySectionSlugRouteImport.update({
   path: '/community/$sectionSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminSectionSlugRoute = AdminSectionSlugRouteImport.update({
   id: '/admin_/$sectionSlug',
   path: '/admin/$sectionSlug',
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
   '/admin/$sectionSlug': typeof AdminSectionSlugRoute
+  '/api/chat': typeof ApiChatRoute
   '/community/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
   '/admin/$sectionSlug': typeof AdminSectionSlugRoute
+  '/api/chat': typeof ApiChatRoute
   '/community/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn/paths/$pathSlug': typeof LearnPathsPathSlugRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/support': typeof SupportRoute
   '/admin_/$sectionSlug': typeof AdminSectionSlugRoute
+  '/api/chat': typeof ApiChatRoute
   '/community_/$sectionSlug': typeof CommunitySectionSlugRoute
   '/learn_/courses/$courseSlug': typeof LearnCoursesCourseSlugRouteWithChildren
   '/learn_/paths/$pathSlug': typeof LearnPathsPathSlugRoute
@@ -208,6 +217,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/support'
     | '/admin/$sectionSlug'
+    | '/api/chat'
     | '/community/$sectionSlug'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/support'
     | '/admin/$sectionSlug'
+    | '/api/chat'
     | '/community/$sectionSlug'
     | '/learn/courses/$courseSlug'
     | '/learn/paths/$pathSlug'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/support'
     | '/admin_/$sectionSlug'
+    | '/api/chat'
     | '/community_/$sectionSlug'
     | '/learn_/courses/$courseSlug'
     | '/learn_/paths/$pathSlug'
@@ -272,6 +284,7 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   SupportRoute: typeof SupportRoute
   AdminSectionSlugRoute: typeof AdminSectionSlugRoute
+  ApiChatRoute: typeof ApiChatRoute
   CommunitySectionSlugRoute: typeof CommunitySectionSlugRoute
   LearnCoursesCourseSlugRoute: typeof LearnCoursesCourseSlugRouteWithChildren
   LearnPathsPathSlugRoute: typeof LearnPathsPathSlugRoute
@@ -384,6 +397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitySectionSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin_/$sectionSlug': {
       id: '/admin_/$sectionSlug'
       path: '/admin/$sectionSlug'
@@ -446,6 +466,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   SupportRoute: SupportRoute,
   AdminSectionSlugRoute: AdminSectionSlugRoute,
+  ApiChatRoute: ApiChatRoute,
   CommunitySectionSlugRoute: CommunitySectionSlugRoute,
   LearnCoursesCourseSlugRoute: LearnCoursesCourseSlugRouteWithChildren,
   LearnPathsPathSlugRoute: LearnPathsPathSlugRoute,
@@ -453,13 +474,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

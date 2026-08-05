@@ -46,7 +46,7 @@ export const Route = createFileRoute("/api/chat")({
         const result = streamText({
           model: provider.responses(DEFAULT_CHAT_MODEL),
           system,
-          messages: convertToModelMessages(messages as UIMessage[]),
+          messages: await convertToModelMessages(messages as UIMessage[]),
           providerOptions: {
             openai: {
               forceReasoning: true,
